@@ -25,6 +25,15 @@ function renderTabs() {
     ${escapeHtml(s.name || `Estudiante ${i+1}`)}</button>`).join("");
   tabs.querySelectorAll("button").forEach(b=>b.onclick=()=>{active=+b.dataset.i; render();});
 }
+function formatTime12(value) {
+  if (!value) return "—";
+  const [h, m] = value.split(":").map(Number);
+  if (Number.isNaN(h) || Number.isNaN(m)) return value;
+  const suffix = h >= 12 ? "PM" : "AM";
+  const hour = h % 12 || 12;
+  return `${hour}:${String(m).padStart(2, "0")} ${suffix}`;
+}
+
 function render() {
   const s=data.students[active];
   renderTabs();
@@ -35,8 +44,8 @@ function render() {
     return `<div class="day">
       <div class="day-name">${d}</div>
       <div class="times">
-        <div class="time-box"><span class="label">Entrada</span><strong>${x.in||"—"}</strong></div>
-        <div class="time-box"><span class="label">Salida</span><strong>${x.out||"—"}</strong></div>
+        <div class="time-box"><span class="label">Entrada</span><strong>${formatTime12(x.in)}</strong></div>
+        <div class="time-box"><span class="label">Salida</span><strong>${formatTime12(x.out)}</strong></div>
       </div>
       ${x.morning?`<div class="activity"><small>Actividad / clase en la mañana</small>${escapeHtml(x.morning)}</div>`:""}
       ${x.afternoon?`<div class="activity"><small>Actividad / cambio en la tarde</small>${escapeHtml(x.afternoon)}</div>`:""}
