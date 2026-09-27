@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>Control Escolar</title>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>Control Escolar</h1>
+        <p class="subtitle">Entradas, salidas y actividades</p>
+      </div>
+      <button id="installBtn" class="secondary hidden">Instalar</button>
+    </header>
+
+    <section class="student-tabs" id="studentTabs"></section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Datos del estudiante</h2>
+        <button id="editStudent" class="icon-btn" title="Editar">✎</button>
+      </div>
+      <div class="student-info">
+        <div><span>Nombre</span><strong id="studentName">Estudiante 1</strong></div>
+        <div><span>Número de cuenta</span><strong id="accountNumber">—</strong></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Horario semanal</h2>
+        <button id="addChange" class="primary">+ Agregar cambio</button>
+      </div>
+      <div id="schedule"></div>
+    </section>
+
+    <p class="saved-note">Los datos se guardan automáticamente en este dispositivo.</p>
+  </main>
+
+  <div class="modal hidden" id="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="modalTitle">Editar estudiante</h2>
+        <button id="closeModal" class="icon-btn">×</button>
+      </div>
+      <form id="modalForm"></form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
